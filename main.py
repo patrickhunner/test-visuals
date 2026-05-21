@@ -24,7 +24,7 @@ class UnitCircle(Scene):
 
         circle = Circle(
             radius=circle_radius,
-            color=RED
+            color=TEAL
         )
 
         # CREATE ANIMATED VARIABLES
@@ -62,7 +62,7 @@ class UnitCircle(Scene):
 
         # CREATE PROJECTION LINE
         x_projection_line = always_redraw(
-            lambda: Line(
+            lambda: DashedLine(
                 start=dot.get_center(),
                 end=[dot.get_center()[0], 0, 0],
                 color=RED
@@ -73,10 +73,9 @@ class UnitCircle(Scene):
         theta_arc = always_redraw(
             lambda: Arc(
                 radius=1,
-                start_angle=0,
+                start_angle=90 * DEGREES,
                 angle=theta.get_value(),
                 arc_center=ORIGIN
-
             )
         )
 
@@ -106,9 +105,9 @@ class UnitCircle(Scene):
 
         # ANIMATE DOT AROUND CIRCLE
         self.play(
-            theta.animate.set_value(2 * PI),
-            run_time=10,
-            rate_func=linear
+            theta.animate.set_value(PI / 2),
+            run_time=5,
+            rate_func=there_and_back
         )
 
         # END SCENE
